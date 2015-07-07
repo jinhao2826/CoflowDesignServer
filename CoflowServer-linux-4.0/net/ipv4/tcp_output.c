@@ -49,8 +49,8 @@ extern spinlock_t coflow_lock;
 extern struct coflow *coflow_header;
 __be64 MAXLEN32 = 4294967295;
 
-//unsigned long long PRIORITY_THRESHOLD = 1440000;
-unsigned long long PRIORITY_THRESHOLD = 4320000;
+unsigned long long PRIORITY_THRESHOLD = 1440000;
+//unsigned long long PRIORITY_THRESHOLD = 4320000;
 /*end*/
 
 /* People can turn this off for buggy TCP's found in printers etc. */
