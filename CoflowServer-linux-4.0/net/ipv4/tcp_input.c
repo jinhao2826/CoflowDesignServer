@@ -3978,7 +3978,7 @@ static void tcp_fin(struct sock *sk)
 						coflowLessThresholdSum++;
 
 					}
-					printk(KERN_ALERT "coflow id:%u size:%u length:%llu total time: %llu\n", p->taskid, p->size, p->length, flow_time);					
+					printk(KERN_ALERT "coflow id:%u size:%u length:%u total time: %llu\n", p->taskid, p->size, p->length, flow_time);					
 	
 					kfree(p);
 					//printk(KERN_ALERT "Free this coflow\n");
@@ -3986,9 +3986,10 @@ static void tcp_fin(struct sock *sk)
 
 				if(coflow_header == NULL){
 
+					printk(KERN_ALERT  "############################################################################################\n");
 					avgtimeLessThreshold = timeLessThreshold/coflowLessThresholdSum;
-					
-					//printk(KERN_ALERT, "coflowsum:%u coflowLessThresholdSum:%u AvgTimeLessThreshold:%u\n",coflowsum,coflowLessThresholdSum,avgtimeLessThreshold);
+							
+					//printk(KERN_ALERT  "coflowsum:%u coflowLessThresholdSum:%u AvgTimeLessThreshold:%u\n",coflowsum,coflowLessThresholdSum,avgtimeLessThreshold);
 					coflowsum = 0;
 					timeLessThreshold = 0;
 					coflowLessThresholdSum = 0;
@@ -6165,7 +6166,7 @@ int tcp_conn_request(struct request_sock_ops *rsk_ops,
 //			printk(KERN_ALERT "syn_ack:%x\n", tcp_rsk(req)->rcv_isn + 1);
 			flow1->ack_seq = tcp_rsk(req)->rcv_isn + 1;
 			flow1->finish = 0;
-			flow1->priority = 2;
+			flow1->priority = 8;
 //			printk(KERN_ALERT "flow build\n");
 			}
 

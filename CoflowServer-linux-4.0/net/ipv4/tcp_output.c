@@ -49,7 +49,8 @@ extern spinlock_t coflow_lock;
 extern struct coflow *coflow_header;
 __be64 MAXLEN32 = 4294967295;
 
-unsigned long long PRIORITY_THRESHOLD = 14400000;
+//unsigned long long PRIORITY_THRESHOLD = 1440000;
+unsigned long long PRIORITY_THRESHOLD = 4320000;
 /*end*/
 
 /* People can turn this off for buggy TCP's found in printers etc. */
@@ -86,7 +87,7 @@ int HC(unsigned int Ncfnsh, unsigned int Ncunfnsh, unsigned long coflow_len, uns
 
 int coflow_priority_algorithm(unsigned long flow_len, unsigned int Ncfnsh, unsigned int Ncunfnsh, unsigned long coflow_len, unsigned int Nc){
 
-	unsigned int K = 3;
+	unsigned int K = 8;
 	unsigned long Xf = flow_len;    //received length for one flow
 	int alpha = 1;
 
@@ -1129,7 +1130,7 @@ static int tcp_transmit_skb(struct sock *sk, struct sk_buff *skb, int clone_it,
 				if(f->priority != th->res1) {
 					
 					//printk(KERN_ALERT "The res1: %u, pair[%x,%x,%x,%x]\n", th->res1, f->saddr, f->daddr, f->source, f->dest);
-					//printk(KERN_ALERT "taskid:%u length: %llu flowLen:%lu [%x,%x,%x, %x] priority:%d===>%d\n", p->taskid, p->length, flowLen, f->saddr, f->daddr, f->source, f->dest, f->priority, th->res1);
+				//	printk(KERN_ALERT "taskid:%u length: %u flowLen:%lu [%x,%x,%x, %x] priority:%d===>%d\n", p->taskid, p->length, flowLen, f->saddr, f->daddr, f->source, f->dest, f->priority, th->res1);
 				
 					f->priority = th->res1;
 				}				
