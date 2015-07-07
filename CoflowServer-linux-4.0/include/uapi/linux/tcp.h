@@ -224,9 +224,9 @@ struct coflow {
 	__u8	taskid;		/*task id in ip header option*/
 	__u32	size;		/*how many flows belong to one coflow*/
 	__u32	finished_size;		/*how many flows have finished*/
-	unsigned long long length;     /*how many coflow length, if two flows belong to one coflow, means add these two flows finished length*/
-	unsigned long long start;		/*cofow start time microsecond*/
-	unsigned long long stop;		/*coflow stop time microsecond*/
+	__u32	length;     /*how many coflow length, if two flows belong to one coflow, means add these two flows finished length*/
+	__be64 start;		/*cofow start time*/
+	__be64 stop;		/*coflow stop time*/
 	struct flow *flow;  /*coflow contains a lot of flows. This is the entry of flow point*/
 };
 
