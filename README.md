@@ -25,4 +25,4 @@ Please refer to my Design Coflow pdf in Coflow_Application Folder.
 5.How to see the result?
 -------------------------------------------------------
 This prototype goal is to get the Coflow Completion Time.
-The result are recorded in Coflow server /var/log/kern.log. Please use sudo vim /var/log/kernel to see the result and use sudo truncate -s 0 /var/log/kernel to clear log.
+The result are recorded in Coflow server /var/log/kern.log. Please use sudo vim /var/log/kern.log to see the result and use sudo truncate -s 0 /var/log/kern.log to clear log.
