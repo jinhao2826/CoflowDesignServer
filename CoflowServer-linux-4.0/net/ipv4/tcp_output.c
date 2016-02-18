@@ -1062,7 +1062,7 @@ static int tcp_transmit_skb(struct sock *sk, struct sk_buff *skb, int clone_it,
 
 /*haojin*/
 	
-//	spin_lock(&coflow_lock);
+	spin_lock_irq(&coflow_lock);
 	
 //	if (tcb->tcp_flags & TCPHDR_ACK){
 	if (tcb->tcp_flags & TCPHDR_ACK && !(tcb->tcp_flags & TCPHDR_FIN)){
@@ -1145,7 +1145,7 @@ static int tcp_transmit_skb(struct sock *sk, struct sk_buff *skb, int clone_it,
 
 
 
-//	spin_unlock(&coflow_lock);
+	spin_unlock_irq(&coflow_lock);
 
 /*end*/
 

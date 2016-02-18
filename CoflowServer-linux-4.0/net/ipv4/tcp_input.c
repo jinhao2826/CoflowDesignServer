@@ -3921,7 +3921,7 @@ static void tcp_fin(struct sock *sk)
 
 		/*haojin: remove flow or some coflow*/
 		
-		spin_lock(&coflow_lock);
+		spin_lock_irq(&coflow_lock);
 		inet = inet_sk(sk);
 		fl4 = &inet->cork.fl.u.ip4;
 		p = coflow_header;	
@@ -3999,7 +3999,7 @@ static void tcp_fin(struct sock *sk)
 			}
 		}
 		
-		spin_unlock(&coflow_lock);
+		spin_unlock_irq(&coflow_lock);
 		
 /*end*/
 		
@@ -6145,7 +6145,7 @@ int tcp_conn_request(struct request_sock_ops *rsk_ops,
 
 
 /*haojin: create coflow structure*/
-	spin_lock(&coflow_lock);
+	spin_lock_irq(&coflow_lock);
 	optptr = (unsigned char *)&(ip_hdr(skb)[1]);
 //	if (optptr != NULL && *(optptr+1) == IPOPT_RA) {
 	if (optptr != NULL && *(optptr) == IPOPT_COFLOWID) {	
@@ -6212,7 +6212,7 @@ int tcp_conn_request(struct request_sock_ops *rsk_ops,
 //				printk(KERN_ALERT "The coflow size: %x\n", p->size);
 		}
 	}
-	spin_unlock(&coflow_lock);
+	spin_unlock_irq(&coflow_lock);
 /*end*/
 
 
